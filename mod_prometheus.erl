@@ -83,6 +83,10 @@ statistic(garbage_collection, Node) ->
   {GcsCount, WordsReclaimed, _} = erlang:statistics(garbage_collection),
   [metric_format("gc_number", Node, GcsCount), metric_format("gc_words_reclaimed_total", Node, WordsReclaimed)];
 
+statistic(connected_users_number, Node) ->
+  ConnectedUsersNumber = ejabberd_sm:connected_users_number(),
+  metric_format("connected_users_number", Node, ConnectedUsersNumber);
+
 statistic(context_switches, Node) ->
   {ContextSwitches, 0} = erlang:statistics(context_switches),
   metric_format(context_switches, Node, ContextSwitches);
