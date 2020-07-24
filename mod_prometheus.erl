@@ -27,7 +27,8 @@
   port_count,
   port_limit,
   process_count,
-  process_limit
+  process_limit,
+  connected_users_number
 ]).
 
 start(_Host, _Opts) ->
