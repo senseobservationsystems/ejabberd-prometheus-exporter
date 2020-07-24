@@ -73,11 +73,11 @@ statistic(schedulers_count, Node) ->
 
 statistic(runtime, Node) ->
   {TotalRuntime, _} = erlang:statistics(runtime),
-  metric_format("run_time_total_seconds", Node, TotalRuntime / 1000);
+  metric_format("run_time_total_seconds_xyz", Node, TotalRuntime / 1000);
 
 statistic(io, Node) ->
   {{input, InputBytes}, {output, OutputBytes}} = erlang:statistics(io),
-  [metric_format("io_input_bytes", Node, InputBytes), metric_format("io_output_bytes", Node, OutputBytes)];
+  [metric_format("io_input_bytes_xyz", Node, InputBytes), metric_format("io_output_bytes", Node, OutputBytes)];
 
 statistic(garbage_collection, Node) ->
   {GcsCount, WordsReclaimed, _} = erlang:statistics(garbage_collection),
@@ -85,7 +85,7 @@ statistic(garbage_collection, Node) ->
 
 statistic(connected_users_number, Node) ->
   ConnectedUsersNumber = ejabberd_sm:connected_users_number(),
-  metric_format("connected_users_number", Node, ConnectedUsersNumber);
+  metric_format(connected_users_number, Node, ConnectedUsersNumber);
 
 statistic(context_switches, Node) ->
   {ContextSwitches, 0} = erlang:statistics(context_switches),
